@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
 const corsOption={          //🟠🟠🟠🟠🟠
-    origin:"http://localhost:5173/",
+    origin:'https://newsapp-3j65.onrender.com',
     credentials:true
 }
 app.use(cors())
@@ -75,8 +75,10 @@ app.post('/get-otp',(req,res)=>{
 
 app.post('/forgot-password',(req,res)=>{
     const {email,otp,password}=req.body;
+    const salt=bcrypt.genSaltSync(saltRounds);
+    const hash=bcrypt.hashSync(password,salt);
     if(serverOtp==otp){
-        mongooseModel.updateOne({email:email},{$set:{password:password}})
+        mongooseModel.updateOne({email:email},{$set:{password:hash}})
         .then(result=>{
             // console.log(result);
             res.json({status:true,msg:"Password has been updated"});

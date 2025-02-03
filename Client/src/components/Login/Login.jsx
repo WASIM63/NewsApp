@@ -11,7 +11,7 @@ const Login = () => {
   const fetchApi = (e) => {
     e.preventDefault();
     axios
-      .post("http://127.0.0.1:3000/login", { email, password })
+      .post("https://newsapp-3j65.onrender.com/login", { email, password })
       .then((result) => {
         // console.log(result);
         if (result.data.status == true) {

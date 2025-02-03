@@ -12,7 +12,7 @@ const SignUp = () => {
   const fetchApi = (e) => {
     e.preventDefault();
     axios
-      .post("http://127.0.0.1:3000/signup", { name, email, password })
+      .post("https://newsapp-3j65.onrender.com/signup", { name, email, password })
       .then((result) => {
         // console.log(result);
         if (result.data.status == true) {

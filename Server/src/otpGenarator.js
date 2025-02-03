@@ -20,11 +20,11 @@ const sendMailFun=async(email)=>{
         text:`Your OTP is ${otp}. It will be expired in 10 minutes.`
     };
     try{
-        // transporter.sendMail(mailConfigurations,(err, info) => {
-        //     if (err) console.log("the email error :",err);
-        //     console.log("Mail sent successfully.");
-        //     console.log(info);
-        // });
+        transporter.sendMail(mailConfigurations,(err, info) => {
+            if (err) console.log("the email error :",err);
+            console.log("Mail sent successfully.");
+            console.log(info);
+        });
         // console.log(otp);
         return otp;
     }catch(err){
