@@ -1,0 +1,25 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+
+.card{
+    margin: 10px;
+    margin-bottom: 30px;
+    height:400px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    box-shadow: 10px 10px 10px rgb(116, 114, 114);
+}
+.img{
+    height:180px;   
+    background-size: cover;
+}
+.readMore{
+    position: absolute;
+    bottom: 20px;
+    left:0px;
+}
