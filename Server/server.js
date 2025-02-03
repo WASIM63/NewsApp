@@ -6,6 +6,7 @@ const cors=require('cors')
 const bcrypt=require('bcrypt');
 const saltRounds = 10;
 const port=process.env.PORT || 3000;
+const path=require('path');
 
 const mongooseModel=require('./src/mongoose.js');
 mongoose.connect(process.env.MONGODB)
@@ -14,11 +15,19 @@ mongoose.connect(process.env.MONGODB)
 
 // OTP genarator and mail sender
 const sendMailFun=require('./src/otpGenarator.js');
-console.log(sendMailFun);
 
 // middleware
 app.use(express.json())
+app.use(express.urlencoded({extended:true}));
+
+const corsOption={          //🟠🟠🟠🟠🟠
+    origin:"http://localhost:5173/",
+    credentials:true
+}
 app.use(cors())
+
+const _dirname=path.resolve();   //🟠🟠🟠🟠 to get the path of the server.js
+
 
 // HTTP methods
 app.post("/signup",async(req,res)=>{
@@ -27,7 +36,7 @@ app.post("/signup",async(req,res)=>{
     const hash=bcrypt.hashSync(password,salt);
     await mongooseModel.create({name:name,email:email,password:hash})
     .then(result=>{
-        console.log(result)
+        // console.log(result)
         res.json({status:true,msg:"Account created"})
     })
     .catch(err=>res.json({status:false,msg:"Something went wrong"}));
@@ -53,7 +62,7 @@ app.post('/get-otp',(req,res)=>{
     .then(user=>{
         if(user){
             sendMailFun(email).then(result=>{
-                console.log(result, typeof(result));
+                // console.log(result, typeof(result));
                 serverOtp=result;
                 res.json({status:true,msg:"OTP has been sent to your mail"})
             })
@@ -69,13 +78,19 @@ app.post('/forgot-password',(req,res)=>{
     if(serverOtp==otp){
         mongooseModel.updateOne({email:email},{$set:{password:password}})
         .then(result=>{
-            console.log(result);
+            // console.log(result);
             res.json({status:true,msg:"Password has been updated"});
         })
         .catch(err=>console.log(err))
     }else{
         res.json({status:false,msg:"Invalid OTP"});
     }
+})
+
+// serving the frontent from backend
+app.use(express.static(path.join(_dirname,"/Client/dist")));  //🟠🟠🟠🟠
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(_dirname,"Client","dist",'index.html'));   //🟠🟠🟠
 })
 
 

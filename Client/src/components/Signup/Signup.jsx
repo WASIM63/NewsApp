@@ -14,7 +14,7 @@ const SignUp = () => {
     axios
       .post("http://127.0.0.1:3000/signup", { name, email, password })
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         if (result.data.status == true) {
           Navigate("/login");
           alert("Account created. Now login");

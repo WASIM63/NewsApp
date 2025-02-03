@@ -16,13 +16,13 @@ const NewsBoard = ({ topic}) => {
       .then((response) => response.json())
       .then((data) => {
         setNews(data.articles);
-        console.log(data.articles);
+        // console.log(data.articles);
       });
   }, [topic]);
 
   return (
     <div className="News-body">
-        {console.log(news.length)}
+        {/* {console.log(news.length)} */}
       {(news.length)
         ? news.map((articles, index) => {
             return <NewsCard key={index} articles={articles} />;

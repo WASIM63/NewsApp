@@ -13,7 +13,7 @@ const Login = () => {
     axios
       .post("http://127.0.0.1:3000/login", { email, password })
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         if (result.data.status == true) {
           localStorage.setItem("auth", true);
           Navigate("/home");

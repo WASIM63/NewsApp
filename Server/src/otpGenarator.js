@@ -25,7 +25,7 @@ const sendMailFun=async(email)=>{
         //     console.log("Mail sent successfully.");
         //     console.log(info);
         // });
-        console.log(otp);
+        // console.log(otp);
         return otp;
     }catch(err){
         console.log(err);
