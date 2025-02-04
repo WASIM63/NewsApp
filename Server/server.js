@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
 const corsOption={          //🟠🟠🟠🟠🟠
-    origin:`${process.env.SERVER_API_URL}`,
+    origin:`https://newsapp-3j65.onrender.com`,
     credentials:true
 }
 app.use(cors())

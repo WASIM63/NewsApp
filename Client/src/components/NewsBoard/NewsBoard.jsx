@@ -11,7 +11,7 @@ const NewsBoard = ({ topic}) => {
   
   useEffect(() => {
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${topic}&apiKey=${import.meta.env.VITE_API_KEY}`
+      `https://newsapi.org/v2/top-headlines?country=us&category=${topic}&apiKey=b28ced8fe6f8462286fc452cf203bbde`
     )
       .then((response) => response.json())
       .then((data) => {
