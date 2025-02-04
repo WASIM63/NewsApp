@@ -11,7 +11,7 @@ const Login = () => {
   const fetchApi = (e) => {
     e.preventDefault();
     axios
-      .post("https://newsapp-3j65.onrender.com/login", { email, password })
+      .post(`${import.meta.env.VITE_SERVER_API_URL}/login`, { email, password })
       .then((result) => {
         // console.log(result);
         if (result.data.status == true) {

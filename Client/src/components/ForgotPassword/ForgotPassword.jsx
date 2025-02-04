@@ -13,7 +13,7 @@ const ForgotPassword=()=>{
     const getOtp=()=>{
         if(email=="")alert('Enter email first')
         else{
-            axios.post("https://newsapp-3j65.onrender.com/get-otp",{email})
+            axios.post(`${import.meta.env.VITE_SERVER_API_URL}/get-otp`,{email})
             .then(result=>{
                 // console.log(result);
                 (result.data.status==true)?alert('OTP has been sent, check your mail'):alert('User not exist, create account1');
@@ -25,7 +25,7 @@ const ForgotPassword=()=>{
     const fetchApi=(e)=>{
         e.preventDefault();
         // console.log({email,otp,password});
-        axios.post("https://newsapp-3j65.onrender.com/forgot-password",{email,otp,password})
+        axios.post(`${import.meta.env.VITE_SERVER_API_URL}/forgot-password`,{email,otp,password})
         .then(result=>{
             // console.log("result :",result);
             if(result.data.status==true){
