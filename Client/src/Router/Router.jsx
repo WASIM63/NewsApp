@@ -16,7 +16,8 @@ const Router=()=>{
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path='/forgot-password' element={<ForgotPassword/>}/>
                 {/* protectecd route */}
-                <Route path="/home" element={auth ? <Home /> : <Login/>} />
+                {/* <Route path="/home" element={auth ? <Home /> : <Login/>} /> */}
+                <Route path="/home" element={<Home />} />
                 {/* default route */}
                 <Route path='*' element={<PageNotFound/>}/>
 
