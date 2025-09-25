@@ -12,23 +12,29 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendMailFun=async(email)=>{
-    let otp=otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false ,lowerCaseAlphabets:false});
-    const mailConfigurations = {
-        from:process.env.EMAIL_ID,
-        to:email,
-        subject:"One Time Password",
-        text:`Your OTP is ${otp}. It will be expired in 10 minutes.`
-    };
-    try{
-        transporter.sendMail(mailConfigurations,(err, info) => {
-            if (err) console.log("the email error :",err);
-            console.log("Mail sent successfully.");
-            console.log(info);
-        });
-        // console.log(otp);
-        return otp;
-    }catch(err){
-        console.log(err);
-    }
+    try {
+		let otp = otpGenerator.generate(6, {
+			upperCaseAlphabets: false,
+			specialChars: false,
+			lowerCaseAlphabets: false,
+		});
+
+		const mailConfigurations = {
+			from: process.env.EMAIL_ID,
+			to: email,
+			subject: "One Time Password",
+			text: `Your OTP is ${otp}. It will be expired in 10 minutes.`,
+		};
+
+		transporter.sendMail(mailConfigurations, (err, info) => {
+			if (err) console.log("the email error :", err);
+			console.log("Mail sent successfully.");
+			console.log(info);
+		});
+		console.log(otp);
+		return otp;
+	} catch (err) {
+		console.log(err);
+	}
 }
 module.exports=sendMailFun;
