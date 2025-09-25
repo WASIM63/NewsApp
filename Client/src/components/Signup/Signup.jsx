@@ -9,18 +9,24 @@ const SignUp = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  console.log(import.meta.VITE_BACKEND_URL);
+
   const fetchApi = (e) => {
     e.preventDefault();
     axios
-      .post(`https://newsapp-3j65.onrender.com/signup`, { name, email, password })
-      .then((result) => {
-        // console.log(result);
-        if (result.data.status == true) {
-          Navigate("/login");
-          alert("Account created. Now login");
-        } else alert("Something went wrong");
-      })
-      .catch((err) => console.log(err));
+		.post(`http://localhost:3000/signup`, {
+			name,
+			email,
+			password,
+		})
+		.then((result) => {
+			// console.log(result);
+			if (result.data.status == true) {
+				Navigate("/login");
+				alert("Account created. Now login");
+			} else alert("Something went wrong");
+		})
+		.catch((err) => console.log(err));
   };
 
   return (

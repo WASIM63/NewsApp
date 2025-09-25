@@ -13,7 +13,7 @@ const ForgotPassword=()=>{
     const getOtp=()=>{
         if(email=="")alert('Enter email first')
         else{
-            axios.post('https://newsapp-3j65.onrender.com/get-otp',{email})
+            axios.post(`http://localhost:3000/get-otp`,{email})
             .then(result=>{
                 // console.log(result);
                 (result.data.status==true)?alert('OTP has been sent, check your mail'):alert('User not exist, create account1');
@@ -25,15 +25,20 @@ const ForgotPassword=()=>{
     const fetchApi=(e)=>{
         e.preventDefault();
         // console.log({email,otp,password});
-        axios.post(`https://newsapp-3j65.onrender.com/forgot-password`,{email,otp,password})
-        .then(result=>{
-            // console.log("result :",result);
-            if(result.data.status==true){
-                Navigate('/login');
-                alert("Password changed. Now login");
-            }else alert(result.data.msg);
-        })
-        .catch(err=>console.log(err))
+        axios
+			.post(`http://localhost:3000/forgot-password`, {
+				email,
+				otp,
+				password,
+			})
+			.then((result) => {
+				// console.log("result :",result);
+				if (result.data.status == true) {
+					Navigate("/login");
+					alert("Password changed. Now login");
+				} else alert(result.data.msg);
+			})
+			.catch((err) => console.log(err));
     }
 
     return(

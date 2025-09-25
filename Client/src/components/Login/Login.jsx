@@ -11,16 +11,16 @@ const Login = () => {
   const fetchApi = (e) => {
     e.preventDefault();
     axios
-      .post(`https://newsapp-3j65.onrender.com/login`, { email, password })
-      .then((result) => {
-        // console.log(result);
-        if (result.data.status == true) {
-          localStorage.setItem("auth", true);
-          Navigate("/home");
-          alert("Login Successfully");
-        } else alert("Incrorrect password or user not exist");
-      })
-      .catch((err) => console.log(err));
+		.post(`http://localhost:3000/login`, { email, password })
+		.then((result) => {
+			// console.log(result);
+			if (result.data.status == true) {
+				localStorage.setItem("auth", true);
+				Navigate("/home");
+				alert("Login Successfully");
+			} else alert("Incrorrect password or user not exist");
+		})
+		.catch((err) => console.log(err));
   };
 
   return (
